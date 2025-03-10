@@ -3,20 +3,14 @@ import { useSelector } from 'react-redux';
 function Result() {
   const result = useSelector((state) => state.questionnaire.result);
 
-  if (!result) {
-    return <p>No answers submitted yet.</p>; 
-  }
+  if (!result) return null; 
 
   return (
     <div>
-      <h2>Results</h2>
-      <ul>
-        {result.map((item, index) => (
-          <li key={index}>
-            <strong>{item.question}</strong>: {item.answer}
-          </li>
-        ))}
-      </ul>
+      <h3>Quiz Result</h3>
+      <p>
+        Your Score: {result.correctAnswersCount} / {result.totalQuestions}
+      </p>
     </div>
   );
 }

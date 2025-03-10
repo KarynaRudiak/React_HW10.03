@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { answerQuestion } from '../features/questionnaire/questionnaireSlice.js';
 
-function Question({ question, isSubmitted }) {
+function Question({ question }) {
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -11,21 +11,15 @@ function Question({ question, isSubmitted }) {
     dispatch(answerQuestion({ questionId: question.id, answer }));
   };
 
-  useEffect(() => {
-    if (isSubmitted) {
-      setSelectedOption(null);
-    }
-  }, [isSubmitted]);
-
   return (
     <div>
       <h2>{question.text}</h2>
-      {question.options.map((option, index) => (
+      {question.options.map((option) => (
         <button
-          key={index}
+          key={option}
           onClick={() => handleAnswer(option)}
           style={{
-            backgroundColor: selectedOption === option ? 'lightgreen' : '', 
+            backgroundColor: selectedOption === option ? 'lightgreen' : '',
           }}
         >
           {option}

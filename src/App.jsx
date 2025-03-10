@@ -17,10 +17,10 @@ function App() {
       <div>
         <h1>Questionnaire</h1>
         {questions.map((question) => (
-          <Question key={question.id} question={question} isSubmitted={result !== null} />
+          <Question key={question.id} question={question} />
         ))}
-        <button onClick={handleSubmit}>Submit Answers</button>
-        <Result />
+        <button onClick={handleSubmit}>Submit</button>
+        {result && <Result />}
       </div>
     </Provider>
   );
